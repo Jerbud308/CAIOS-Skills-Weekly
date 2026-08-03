@@ -4,7 +4,7 @@ A RAC Projects AI production. A weekly job that publishes one "steal this" GitHu
 
 ## What this does
 
-Every Monday at 08:00 AM, a ClaudeClaw scheduled task (`bb0fece4`, `node dist/schedule-cli.js list` from the claudeclaw repo to inspect it) clones/pulls this repo and runs the instructions in [`ROUTINE.md`](./ROUTINE.md).
+Every Monday at 08:00 AM, a ClaudeClaw scheduled task (`986f4544`, `node dist/schedule-cli.js list` from the claudeclaw repo to inspect it) clones/pulls this repo and runs the instructions in [`ROUTINE.md`](./ROUTINE.md).
 
 The real queue lives in Obsidian, not in this repo: `02-Projects/RAC Projects AI/Research/GitHub Repos Worth Sharing.md` holds 500+ candidate repos pulled from Jeremy's daily trending-repos digest, organized by category. Jeremy checks a box on ones he's actually used or genuinely vouches for. Each week the routine picks the first checked-and-unposted repo, reads its real README (not just the digest's one-line take), writes a Skool-ready post, and marks that line `(posted DATE)` in the Obsidian note so it isn't picked again.
 
@@ -18,7 +18,7 @@ It never posts to Skool itself. Jeremy reads and copies the draft from the dashb
 
 ## How it's wired
 
-This runs on the ClaudeClaw bot's own scheduler, not a hosted Claude Code Routine, so there's no separate web UI to maintain. See `docs/solutions/` in the claudeclaw repo (`orphaned-cron-prompt-scheduled-tasks-2026-07-02.md`) for why recurring work in that project always goes through the local scheduler. To change the schedule or the wrapper prompt, edit task `bb0fece4` via the `schedule` skill; to change what the routine actually does, edit `ROUTINE.md` in this repo, the scheduler prompt just points at it.
+This runs on the ClaudeClaw bot's own scheduler, not a hosted Claude Code Routine, so there's no separate web UI to maintain. See `docs/solutions/` in the claudeclaw repo (`orphaned-cron-prompt-scheduled-tasks-2026-07-02.md`) for why recurring work in that project always goes through the local scheduler. To change the schedule or the wrapper prompt, edit task `986f4544` via the `schedule` skill; to change what the routine actually does, edit `ROUTINE.md` in this repo, the scheduler prompt just points at it.
 
 ## How to read the output
 
