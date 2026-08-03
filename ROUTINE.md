@@ -12,9 +12,9 @@ Primary source: real repos Jeremy has personally checked off as worth sharing. O
 - `inputs/skills-queue.md` exists but is NOT read by the automatic weekly run. It's only used when Jeremy explicitly asks for a "my own skill" week.
 
 ## PROCESS
-1. Read the Obsidian note. Collect every line matching `- [x] **[owner/repo](url)**, {{take}} (first seen DATE)` that does NOT already have a trailing `(posted DATE)` marker appended after it. These are approved-and-unposted picks.
+1. Read the Obsidian note. Collect every line matching `- [x] **[owner/repo](url)**, {{take}} (first seen DATE)` that does NOT already have a trailing `(posted DATE)` or `(fallback-posted DATE, ...)` marker appended after it. A checked box on a line that already has either marker means Jeremy retroactively approved something already shipped, that's just a nice signal, not a re-trigger, skip it. These are approved-and-unposted picks.
 2. If one or more exist, pick the first one, top to bottom in file order (category order as it appears in the note). This is an APPROVED week.
-3. If none exist, this is a FALLBACK week: clone/pull `https://github.com/Jerbud308/Trending-GitHub-Repositories.git` (to `~/developer/Trending-GitHub-Repositories` if not already cloned), read the most recent `outputs/trending-*.md` file, and pick the single best repo from its "Top 10, last 7 days" list that is not already covered in this repo's `outputs/` and not already checked in the Obsidian note (checked or unchecked, just don't repeat one already tracked there under a different status). "Best" means most relevant to a consulting/business-practitioner audience, not just highest star count, use judgment.
+3. If none exist, this is a FALLBACK week: clone/pull `https://github.com/Jerbud308/Trending-GitHub-Repositories.git` (to `~/developer/Trending-GitHub-Repositories` if not already cloned), read the most recent `outputs/trending-*.md` file, and pick the single best repo from its "Top 10, last 7 days" list that is not already covered in this repo's `outputs/` and does not already have a `(posted DATE)` or `(fallback-posted DATE, ...)` marker in the Obsidian note (checked or unchecked, just don't repeat one already shipped). "Best" means most relevant to a consulting/business-practitioner audience, not just highest star count, use judgment.
 4. Read the chosen repo for real: fetch its actual README (WebFetch the GitHub repo page or raw README), don't just reword the one-line digest take into 400 words of padding. Ground every claim in what the repo actually does and actually requires (language, setup complexity, whether it needs an API key, etc).
 5. Identify who this is actually for and the plainest way to explain it to someone who may not code. If the repo is genuinely too technical to be useful to a non-technical consultant even secondhand, say so honestly in the post rather than forcing a fit, that's a valid and useful thing to tell the audience.
 6. Write the post following the OUTPUT format below.
@@ -62,8 +62,14 @@ Format of the markdown file:
 
 Note: the footer line still says "built and actually used in Jeremy's own business", only keep that exact wording for an APPROVED pick (Jeremy checked the box, meaning he vouches for it). For a FALLBACK/unapproved pick, change it to: *CAIOS Skills Weekly, a RAC Projects AI production.* (drop the "built and used" claim entirely, it would be false for something nobody's vetted yet).
 
-## AFTER A SUCCESSFUL APPROVED-WEEK POST
-Edit the Obsidian note: find the exact checked line you used and append ` (posted YYYY-MM-DD)` to the end of it, so it's marked done and the next run skips it. Do not touch any other line in that file. Use a targeted string replace, not a full-file rewrite.
+## AFTER A SUCCESSFUL POST, BOTH KINDS
+Edit the Obsidian note: find the exact line for the repo you used (it will already exist there, checked or unchecked, since the note covers the same trending history this repo's fallback picks come from) and append a marker so the next run skips it and Jeremy can see it's already gone out:
+- APPROVED pick: append ` (posted YYYY-MM-DD)`.
+- FALLBACK pick: append ` (fallback-posted YYYY-MM-DD, check the box if you're good with it)`.
+
+If the fallback pick somehow isn't in the note at all (shouldn't normally happen since the note is built from the same trending history), add it as a new unchecked line in the right category with both the `(first seen ...)` and `(fallback-posted ...)` markers.
+
+Do not touch any other line in that file. Use a targeted string replace, not a full-file rewrite.
 
 ## CONSTRAINTS
 - The footer credit line is the ONLY place RAC Projects AI or CAIOS get named. Never mention Audity, ClaudeClaw, client names, or any other proprietary business detail anywhere in the body. Genericize: "a business I advise," "my own company," "a client." See `.claude/CLAUDE.md`.
